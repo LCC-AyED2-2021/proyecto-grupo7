@@ -1,1 +1,1 @@
-# proyecto-grupo7
+# Proyecto Algo2 - Biblioteca Virtual
