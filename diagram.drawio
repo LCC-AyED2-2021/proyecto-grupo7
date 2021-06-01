@@ -1,11 +1,11 @@
 <mxfile>
     <diagram id="Uo-2T-pOSvjsq4GqCG5A" name="Page-1">
-        <mxGraphModel dx="933" dy="658" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="533" dy="277" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-4" value="h&lt;br style=&quot;font-size: 27px;&quot;&gt;o&lt;br style=&quot;font-size: 27px;&quot;&gt;l&lt;br style=&quot;font-size: 27px;&quot;&gt;a" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=27;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="183.75" y="140" width="90" height="120" as="geometry"/>
+                    <mxGeometry x="180" y="140" width="90" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-5" value="" style="endArrow=classic;html=1;fontSize=27;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -32,13 +32,13 @@
                     <mxGeometry x="375" y="240" width="20" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-16" value="files = os.listdir()&lt;br&gt;len(files)&lt;br&gt;for file in files:&lt;br&gt;c = 0&lt;br&gt;for line in lines&lt;br&gt;asd&lt;br&gt;&lt;br&gt;c += 1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=9;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="200" y="400" width="120" height="90" as="geometry"/>
+                    <mxGeometry x="220" y="510" width="120" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-29" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;fontSize=9;" parent="1" source="Tgvbzaig_oPMP2Z5Tpzd-20" target="Tgvbzaig_oPMP2Z5Tpzd-25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-20" value="Create" style="whiteSpace=wrap;html=1;fontSize=9;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="80" y="340" width="120" height="60" as="geometry"/>
+                    <mxGeometry y="350" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="pOM9a0lBMPSMLv2q6uzr-11" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Tgvbzaig_oPMP2Z5Tpzd-22" target="Tgvbzaig_oPMP2Z5Tpzd-35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -65,7 +65,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-35" value="agarra el trie de library.txt" style="whiteSpace=wrap;html=1;fontSize=9;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="196.25" y="750" width="90" height="30" as="geometry"/>
+                    <mxGeometry x="340" y="750" width="90" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-36" value="busca la palabra dentro del trie" style="whiteSpace=wrap;html=1;fontSize=9;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="340" y="840" width="90" height="30" as="geometry"/>
@@ -76,8 +76,29 @@
                 <mxCell id="Tgvbzaig_oPMP2Z5Tpzd-39" value="Ej: [&quot;Hola&quot;, &quot;Como&quot;, &quot;Estas&quot;]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=9;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="63.75" y="600" width="132.5" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="pOM9a0lBMPSMLv2q6uzr-13" value="Class trieNode():&lt;br&gt;parent = None&lt;br&gt;children = None&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="340" y="70" width="125" height="70" as="geometry"/>
+                <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="pOM9a0lBMPSMLv2q6uzr-13" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pOM9a0lBMPSMLv2q6uzr-13" value="Class trieNode():&lt;br&gt;parent = None&lt;br&gt;children = None&lt;br&gt;isEndOfWord = None&lt;br&gt;files = None" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="110" width="125" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Campo files (variación de LinkedList):&lt;br&gt;fileName = None&lt;br&gt;wordReps = None" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="210" width="125" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font size=&quot;1&quot;&gt;insert(Trie, element, fileName)&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="137.5" y="100" width="175" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="8" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;font size=&quot;1&quot;&gt;search(Trie, element)&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="280" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.608;entryY=1.016;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="9" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;font size=&quot;1&quot;&gt;Devuelve LinkedList modificada con los files&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="340" width="227.5" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
