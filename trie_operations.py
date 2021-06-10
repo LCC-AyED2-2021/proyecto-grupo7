@@ -1,3 +1,6 @@
+from algo1 import *
+from linkedlist import *
+
 class Trie:
   root = None
 
