@@ -8,14 +8,24 @@ class TrieNode:
   parent = None
   children = None
   key = None
-  isEndOfWord = None  
+  isEndOfWord = None
+  files = None  
+
+class filesList:
+  head = None
+
+class filesNode:
+  nextNode = None
+  fileName = None
+  wordReps = 0
 
 T = Trie() 
 
 
-def TInsert(T,element):
-  ''' Descripción: insert un elemento en T, siendo T un Trie.
-  Entrada: El Trie sobre la cual se quiere agregar el elemento (Trie)  y el valor del elemento (palabra) a  agregar.
+def TInsert(T,element,fileName):
+  ''' Descripción: inserta un elemento en T, siendo T un Trie.
+  Entrada: El Trie sobre la cual se quiere agregar el elemento (Trie), el valor del elemento (palabra)
+  a agregar y el archivo en el cual se agregará.
   Salida:  No hay salida definida '''
   if T.root == None:
     T.root = TrieNode()
@@ -30,11 +40,30 @@ def TInsert(T,element):
         trieNode.key = element[i]
         if i == len(element)-1:
           trieNode.isEndOfWord = True
+          trieNode.files = filesList()
+          trieNode.files.head = filesNode()
+          currentFile = trieNode.files.head
+          currentFile.fileName = fileName
+          reps = currentFile.wordReps 
+          currentFile.wordReps = reps + 1
         add(current.children,trieNode)
         current = trieNode
       else:
         if i == len(element)-1:
           listNode.isEndOfWord = True
+          currentFile = listNode.files.head
+          while currentFile != None:
+            if currentFile.fileName == fileName:
+              reps = currentFile.wordReps
+              currentFile.wordReps = reps + 1
+            previousFile = currentFile  
+            currentFile = currentFile.nextNode
+          if currentFile == None:
+            newFile = filesNode()
+            newFile.fileName = fileName
+            reps = newFile.wordReps
+            newFile.wordReps = reps + 1
+            previousFile.nextNode = newFile              
         current = listNode
     else:
       current.children = LinkedList()
@@ -43,6 +72,12 @@ def TInsert(T,element):
       trieNode.key = element[i]
       if i == len(element)-1:
           trieNode.isEndOfWord = True
+          trieNode.files = filesList()
+          trieNode.files.head = filesNode()
+          currentFile = trieNode.files.head
+          currentFile.fileName = fileName
+          reps = currentFile.wordReps 
+          currentFile.wordReps = reps + 1
       add(current.children,trieNode)
       current = trieNode
 
@@ -61,7 +96,7 @@ def searchCharacter(L, element):
 def TSearch(T,element):
   ''' Descripción: Verifica que un elemento se encuentre dentro del Trie
   Entrada: El Trie sobre la cual se quiere buscar el elemento (Trie)  y el valor del elemento (palabra).
-  Salida: Devuelve False o True  según se encuentre el elemento.
+  Salida: Retorna False si el elemento no se encuentra, de lo contrario retorna una lista.
   '''
   element = String(element)
   if T.root == None:
@@ -77,13 +112,12 @@ def TSearch(T,element):
         else:
           if i == len(element)-1 and current != None:
             if current.value != None and current.value.isEndOfWord == True:      
-              return True
+              return current.value.files
             else:
               return False 
           if current.value.children != None :
             current = current.value.children.head
            
-      
 
 
 def fillWord(T,newNode,i,element):
@@ -135,9 +169,6 @@ def traverseTreeR(L,word,listOfWords):
   return listOfWords  
 
 
-
-
-
 def entireNWord(T,word,n):
   print("")
   print("Se buscan todas las palabras dentro del Trie que empiecen con la palabra", word," y que sean de longitud",n,".")
@@ -170,4 +201,29 @@ def entireNWord(T,word,n):
       
 
 
+
+
+
+
+
+
+
+
+# TESTEOS
+# TInsert(T,"Hola","file.txt")
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.fileName)
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.wordReps)
+# TInsert(T,"Hola","file2.txt")
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.nextNode.fileName)
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.nextNode.wordReps)
+# TInsert(T,"Hola","file.txt")
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.fileName)
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.wordReps)
+# TInsert(T,"hola","file.txt")
+# print(T.root.children.head.value.key)
+
+
+# result = TSearch(T,"Hola")
+
+# print(result.head.fileName)
 

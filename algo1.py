@@ -1,7 +1,3 @@
-# Paquete algo1.py 
-# jue oct 12 13:26:46 ART 2017
-# Algoritmos y Estructuaras de datos I
-# Funciones de carga de valores
 import copy
 def input_int( str ):
 	try:
