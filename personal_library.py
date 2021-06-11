@@ -6,11 +6,7 @@ import pickle
 # Imports propios
 from linkedlist import *
 from algo1 import *
-
-
-class testObject():
-    id = None
-    name = None
+from main_structures import TInsert, TSearch, Trie
 
 
 def isTextFile(filename):
@@ -34,11 +30,16 @@ def isTextFile(filename):
 
 
 def create(path):
-    '''
-        AVISO: por ahora solo funciona con un path exacto, arreglar para que funcione con path del directorio actual
-    '''
     # Arreglo con los archivos del directorio
     libraryFiles = os.listdir(path)
+    amountFiles = len(libraryFiles)
+    # Si no hay archivos en la biblioteca
+    if(amountFiles == 0):
+        print("No hay archivos en la biblioteca")
+        return
+
+    # Creo Trie
+    wordsTree = Trie()
 
     # Recorro los archivos del directorio
     for file in libraryFiles:
@@ -61,23 +62,14 @@ def create(path):
                         '''
                         if(line[i] == " " or line[i] == "," or line[i] == "."):
                             if(len(word) != 0):
-                                # print(file)
-                                '''
-                                insert en el trie por palabra
-                                '''
-                                print(word)
+                                # Insert de palabra en el árbol
+                                print(TInsert(wordsTree, word, file))
                             word = String("")
                         else:
                             word = concat(word, String(line[i]))
-            '''
-            Empezando a integrar pickle..
-            '''
-            test = testObject()
-            test.id = 123
-            test.name = 'test'
-            # Abro archivo para crear el bin pickle
-            with open('library.bin', 'bw') as lib:
-                pickle.dump(test, lib)
+    # Guardo trie en pickle
+    with open('library.bin', 'bw') as lib:
+        pickle.dump(wordsTree, lib)
 
 
 def search(text):
@@ -86,9 +78,8 @@ def search(text):
         try:
             # Cargo el Trie en pickle
             trie = pickle.load(lib)
-            '''
-                implementar busqueda en trie devuelto por pickle
-            '''
+
+            print(trie)
         # En caso de que el archivo este vacío (no se ha creado biblioteca)
         except EOFError:
             print("ERROR: Todavía no se ha creado una biblioteca")
