@@ -10,6 +10,26 @@ from main_structures import *
 from hash_structure import *
 
 
+def progressBar(iterable, prefix='', suffix='', decimals=1, length=100, fill='█', printEnd="\r"):
+    total = len(iterable)
+    # Progress Bar Printing Function
+
+    def printProgressBar(iteration):
+        percent = ("{0:." + str(decimals) + "f}").format(100 *
+                                                         (iteration / float(total)))
+        filledLength = int(length * iteration // total)
+        bar = fill * filledLength + '-' * (length - filledLength)
+        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printEnd)
+    # Initial Call
+    printProgressBar(0)
+    # Update Progress Bar
+    for i, item in enumerate(iterable):
+        yield item
+        printProgressBar(i + 1)
+    # Print New Line on Complete
+    print()
+
+
 def isTextFile(filename):
     filenameLength = len(filename)
     # Si la longitud del filename es menor a 5, no tiene extensión txt
@@ -134,12 +154,13 @@ def create(path):
     if(amountFiles == 0):
         print("No hay archivos en la biblioteca")
         return
-
+    print("Creando la biblioteca..")
     # Creo Trie
     wordsTree = Trie()
     specialCharHash = createSpecialCharsHash()
     # Recorro los archivos del directorio
-    for file in libraryFiles:
+    # for file in libraryFiles:
+    for file in progressBar(libraryFiles, prefix='Progreso:', suffix='Completado', length=50):
         # Solo leo archivo si es TXT
         if(isTextFile(file)):
             with open(path + "\\" + file, 'r', encoding='utf-8') as currentFile:
