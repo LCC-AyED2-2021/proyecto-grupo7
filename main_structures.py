@@ -36,7 +36,7 @@ def TInsert(T, element, fileName):
         T.root = TrieNode()
         T.root.key = "root"
     current = T.root
-    element = String(element)
+
     for i in range(0, len(element)):
         if current.children != None:
             listNode = searchCharacter(current.children, element[i])

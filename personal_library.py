@@ -6,7 +6,7 @@ import pickle
 # Imports propios
 from linkedlist import *
 from algo1 import *
-from main_structures import TInsert, TSearch, Trie
+from main_structures import *
 
 
 def isTextFile(filename):
@@ -63,6 +63,7 @@ def create(path):
                         if(line[i] == " " or line[i] == "," or line[i] == "."):
                             if(len(word) != 0):
                                 # Insert de palabra en el árbol
+                                print(word)
                                 print(TInsert(wordsTree, word, file))
                             word = String("")
                         else:
