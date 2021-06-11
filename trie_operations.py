@@ -8,14 +8,24 @@ class TrieNode:
   parent = None
   children = None
   key = None
-  isEndOfWord = None  
+  isEndOfWord = None
+  files = None  
+
+class filesList:
+  head = None
+
+class filesNode:
+  nextNode = None
+  fileName = None
+  wordReps = 0
 
 T = Trie() 
 
 
-def TInsert(T,element):
-  ''' Descripción: insert un elemento en T, siendo T un Trie.
-  Entrada: El Trie sobre la cual se quiere agregar el elemento (Trie)  y el valor del elemento (palabra) a  agregar.
+def TInsert(T,element,fileName):
+  ''' Descripción: inserta un elemento en T, siendo T un Trie.
+  Entrada: El Trie sobre la cual se quiere agregar el elemento (Trie), el valor del elemento (palabra)
+  a agregar y el archivo en el cual se agregará.
   Salida:  No hay salida definida '''
   if T.root == None:
     T.root = TrieNode()
@@ -30,11 +40,30 @@ def TInsert(T,element):
         trieNode.key = element[i]
         if i == len(element)-1:
           trieNode.isEndOfWord = True
+          trieNode.files = filesList()
+          trieNode.files.head = filesNode()
+          currentFile = trieNode.files.head
+          currentFile.fileName = fileName
+          reps = currentFile.wordReps 
+          currentFile.wordReps = reps + 1
         add(current.children,trieNode)
         current = trieNode
       else:
         if i == len(element)-1:
           listNode.isEndOfWord = True
+          currentFile = listNode.files.head
+          while currentFile != None:
+            if currentFile.fileName == fileName:
+              reps = currentFile.wordReps
+              currentFile.wordReps = reps + 1
+            previousFile = currentFile  
+            currentFile = currentFile.nextNode
+          if currentFile == None:
+            newFile = filesNode()
+            newFile.fileName = fileName
+            reps = newFile.wordReps
+            newFile.wordReps = reps + 1
+            previousFile.nextNode = newFile              
         current = listNode
     else:
       current.children = LinkedList()
