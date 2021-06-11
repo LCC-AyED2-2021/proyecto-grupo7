@@ -8,26 +8,7 @@ import pickle
 from algo1 import *
 from main_structures import *
 from hash_structure import *
-
-
-def progressBar(iterable, prefix='', suffix='', decimals=1, length=100, fill='█', printEnd="\r"):
-    total = len(iterable)
-    # Progress Bar Printing Function
-
-    def printProgressBar(iteration):
-        percent = ("{0:." + str(decimals) + "f}").format(100 *
-                                                         (iteration / float(total)))
-        filledLength = int(length * iteration // total)
-        bar = fill * filledLength + '-' * (length - filledLength)
-        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printEnd)
-    # Initial Call
-    printProgressBar(0)
-    # Update Progress Bar
-    for i, item in enumerate(iterable):
-        yield item
-        printProgressBar(i + 1)
-    # Print New Line on Complete
-    print()
+from insertionsort_structure import InsertionSort
 
 
 def isTextFile(filename):
@@ -159,8 +140,7 @@ def create(path):
     wordsTree = Trie()
     specialCharHash = createSpecialCharsHash()
     # Recorro los archivos del directorio
-    # for file in libraryFiles:
-    for file in progressBar(libraryFiles, prefix='Progreso:', suffix='Completado', length=50):
+    for file in libraryFiles:
         # Solo leo archivo si es TXT
         if(isTextFile(file)):
             with open(path + "\\" + file, 'r', encoding='utf-8') as currentFile:
@@ -209,7 +189,10 @@ def search(text):
                 '''
                 Falta insertion sort
                 '''
-                printFilesList(TSearch(trie, text))
+                finalWordsResult = TSearch(trie, text)
+                InsertionSort(finalWordsResult)
+
+                printFilesList(finalWordsResult)
         # En caso de que el archivo este vacío (no se ha creado biblioteca)
         except EOFError:
             print("ERROR: Todavía no se ha creado una biblioteca")

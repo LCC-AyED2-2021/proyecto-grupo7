@@ -8,6 +8,8 @@ class nodeHash:
 
 
 def addHashNode(L, key, value):
+    if(L == None):
+        return None
     newNode = nodeHash()
     newNode.key = key
     newNode.value = value
