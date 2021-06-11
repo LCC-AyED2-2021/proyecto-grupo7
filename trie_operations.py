@@ -96,7 +96,7 @@ def searchCharacter(L, element):
 def TSearch(T,element):
   ''' Descripción: Verifica que un elemento se encuentre dentro del Trie
   Entrada: El Trie sobre la cual se quiere buscar el elemento (Trie)  y el valor del elemento (palabra).
-  Salida: Devuelve False o True  según se encuentre el elemento.
+  Salida: Retorna False si el elemento no se encuentra, de lo contrario retorna una lista.
   '''
   element = String(element)
   if T.root == None:
@@ -112,7 +112,7 @@ def TSearch(T,element):
         else:
           if i == len(element)-1 and current != None:
             if current.value != None and current.value.isEndOfWord == True:      
-              return True
+              return current.value.files
             else:
               return False 
           if current.value.children != None :
@@ -221,4 +221,9 @@ def entireNWord(T,word,n):
 # print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.wordReps)
 # TInsert(T,"hola","file.txt")
 # print(T.root.children.head.value.key)
+
+
+# result = TSearch(T,"Hola")
+
+# print(result.head.fileName)
 
