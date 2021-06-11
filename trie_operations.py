@@ -72,6 +72,12 @@ def TInsert(T,element,fileName):
       trieNode.key = element[i]
       if i == len(element)-1:
           trieNode.isEndOfWord = True
+          trieNode.files = filesList()
+          trieNode.files.head = filesNode()
+          currentFile = trieNode.files.head
+          currentFile.fileName = fileName
+          reps = currentFile.wordReps 
+          currentFile.wordReps = reps + 1
       add(current.children,trieNode)
       current = trieNode
 
@@ -112,7 +118,6 @@ def TSearch(T,element):
           if current.value.children != None :
             current = current.value.children.head
            
-      
 
 
 def fillWord(T,newNode,i,element):
@@ -164,9 +169,6 @@ def traverseTreeR(L,word,listOfWords):
   return listOfWords  
 
 
-
-
-
 def entireNWord(T,word,n):
   print("")
   print("Se buscan todas las palabras dentro del Trie que empiecen con la palabra", word," y que sean de longitud",n,".")
@@ -199,4 +201,24 @@ def entireNWord(T,word,n):
       
 
 
+
+
+
+
+
+
+
+
+# TESTEOS
+# TInsert(T,"Hola","file.txt")
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.fileName)
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.wordReps)
+# TInsert(T,"Hola","file2.txt")
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.nextNode.fileName)
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.nextNode.wordReps)
+# TInsert(T,"Hola","file.txt")
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.fileName)
+# print(T.root.children.head.value.children.head.value.children.head.value.children.head.value.files.head.wordReps)
+# TInsert(T,"hola","file.txt")
+# print(T.root.children.head.value.key)
 
