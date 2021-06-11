@@ -13,6 +13,26 @@ class testObject():
     name = None
 
 
+def isTextFile(filename):
+    filenameLength = len(filename)
+    # Si la longitud del filename es menor a 4, no tiene extensión
+    if(filenameLength < 4):
+        return False
+
+    # String para comparar
+    txtExtension = String(".txt")
+
+    count = 0
+
+    # Verifico que los últimos 4 caracteres sean '.txt'
+    for i in range(filenameLength - 4, filenameLength):
+        # Si no matchean con el string de comparación, es otra extensión
+        if(filename[i] != txtExtension[count]):
+            return False
+        count += 1
+    return True
+
+
 def create(path):
     '''
         AVISO: por ahora solo funciona con un path exacto, arreglar para que funcione con path del directorio actual
@@ -22,46 +42,49 @@ def create(path):
 
     # Recorro los archivos del directorio
     for file in libraryFiles:
-        '''
-            AVISO: verificar extensión de los archivos que sea .txt
-        '''
-        with open(path + "\\" + file, 'r', encoding='utf-8') as currentFile:
-            fileLines = currentFile.readlines()
+        # Solo leo archivo si es TXT
+        if(isTextFile(file)):
+            with open(path + "\\" + file, 'r', encoding='utf-8') as currentFile:
+                print(currentFile)
+                fileLines = currentFile.readlines()
 
-            # Por archivo, línea por línea
-            for line in fileLines:
-                # Convierto a String✨ de Algo 1
-                line = String(line)
-                lineLength = len(line)
-                word = String("")
+                # Por archivo, línea por línea
+                for line in fileLines:
+                    # Convierto a String✨ de Algo 1
+                    line = String(line)
+                    lineLength = len(line)
+                    word = String("")
 
-                for i in range(0, lineLength):
-                    if(line[i] == " " or line[i] == "," or line[i] == "."):
-                        if(len(word) != 0):
-                            '''
-                            insert en el trie por palabra
-                            '''
-                            # print(word)
-                        word = String("")
-                    else:
-                        word = concat(word, String(line[i]))
-
-        '''
-        Empezando a integrar pickle..
-        '''
-
-        test = testObject()
-        test.id = 123
-        test.name = 'test'
-
-        with open('library.bin', 'bw') as lib:
-            pickle.dump(test, lib)
+                    for i in range(0, lineLength):
+                        '''
+                            Caractéres especiales: @ " ' , ´ { } ! $ % & / \ ( ) [ ] * = ° | : ; < > - _ ^ # ~
+                        '''
+                        if(line[i] == " " or line[i] == "," or line[i] == "."):
+                            if(len(word) != 0):
+                                # print(file)
+                                '''
+                                insert en el trie por palabra
+                                '''
+                                print(word)
+                            word = String("")
+                        else:
+                            word = concat(word, String(line[i]))
+            '''
+            Empezando a integrar pickle..
+            '''
+            test = testObject()
+            test.id = 123
+            test.name = 'test'
+            # Abro archivo para crear el bin pickle
+            with open('library.bin', 'bw') as lib:
+                pickle.dump(test, lib)
 
 
 def search(text):
     # Abro archivo contenedor del bin pickle
     with open('library.bin', 'rb') as lib:
         try:
+            # Cargo el Trie en pickle
             trie = pickle.load(lib)
             '''
                 implementar busqueda en trie devuelto por pickle
@@ -87,7 +110,12 @@ def main():
             if(os.path.exists(path)):
                 create(path)
             else:
-                print("El directorio que ha ingresado es inválido")
+                print("El directorio que ha ingresado es inválido o no existe")
+                print("Intente con:")
+                print(
+                    "   Directorio absoluto, por ejemplo: C:/directorio/a/la/carpeta")
+                print(
+                    "   Directorio relativo (si está en la misma carpeta del programa), por ejemplo: directorio")
         elif(paramValue == '-search'):
             searchValue = sys.argv[2]
 
