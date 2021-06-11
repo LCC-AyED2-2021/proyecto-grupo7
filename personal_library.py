@@ -62,9 +62,8 @@ def create(path):
                         '''
                         if(line[i] == " " or line[i] == "," or line[i] == "."):
                             if(len(word) != 0):
-                                # Insert de palabra en el árbol
-                                print(word)
-                                print(TInsert(wordsTree, word, file))
+                                # Insert de palabra en el árbol                             
+                                TInsert(wordsTree, word, file)
                             word = String("")
                         else:
                             word = concat(word, String(line[i]))
@@ -78,9 +77,11 @@ def search(text):
     with open('library.bin', 'rb') as lib:
         try:
             # Cargo el Trie en pickle
-            trie = pickle.load(lib)
+            trie = pickle.load(lib)          
 
-            print(trie)
+            list = TSearch(trie,text)
+            print(list.head.nextNode)
+            listPrint(TSearch(trie,text))
         # En caso de que el archivo este vacío (no se ha creado biblioteca)
         except EOFError:
             print("ERROR: Todavía no se ha creado una biblioteca")

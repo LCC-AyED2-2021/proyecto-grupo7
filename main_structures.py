@@ -43,7 +43,7 @@ def TInsert(T, element, fileName):
             if listNode == None:
                 trieNode = TrieNode()
                 trieNode.key = element[i]
-                if i == len(element)-1:
+                if i == len(element)-1:                    
                     trieNode.isEndOfWord = True
                     trieNode.files = filesList()
                     trieNode.files.head = filesNode()
@@ -55,20 +55,17 @@ def TInsert(T, element, fileName):
                 current = trieNode
             else:
                 if i == len(element)-1:
-                    listNode.isEndOfWord = True
-                    currentFile = listNode.files.head
-                    while currentFile != None:
+                    listNode.isEndOfWord = True 
+                    if listNode.files == None:
+                        listNode.files = filesList()
+                        listAdd(listNode.files,fileName)                    
+                    else:
+                        currentFile = listNode.files.head
                         if currentFile.fileName == fileName:
-                            reps = currentFile.wordReps
-                            currentFile.wordReps = reps + 1
-                        previousFile = currentFile
-                        currentFile = currentFile.nextNode
-                    if currentFile == None:
-                        newFile = filesNode()
-                        newFile.fileName = fileName
-                        reps = newFile.wordReps
-                        newFile.wordReps = reps + 1
-                        previousFile.nextNode = newFile
+                            currentFile.wordReps += 1
+                        else:
+                            listNode.files = filesList()
+                            listAdd(listNode.files,fileName) 
                 current = listNode
         else:
             current.children = LinkedList()
@@ -122,6 +119,27 @@ def TSearch(T, element):
                         return False
                 if current.value.children != None:
                     current = current.value.children.head
+
+
+def listAdd(list,element):
+    newFile = filesNode()
+    newFile.fileName = element
+    newFile.wordReps = 1
+    newFile.nextNode = list.head
+    list.head = newFile
+
+
+def listPrint(L):
+  ''' La función listPrint() imprime todos los elementos de la lista enlazada. '''
+  current = L.head
+  while current != None:
+    print(current.fileName,end = " ")
+    print(current.wordReps,end = " ")
+    current = current.nextNode
+  print("")
+
+
+
 
 # TESTEOS
 # TInsert(T,"Hola","file.txt")
