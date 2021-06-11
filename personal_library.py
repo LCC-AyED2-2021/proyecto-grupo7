@@ -1,9 +1,16 @@
 # Imports manipulación de archivos
 import sys
 import os
+# Import para serialización de datos
+import pickle
 # Imports propios
 from linkedlist import *
 from algo1 import *
+
+
+class testObject():
+    id = None
+    name = None
 
 
 def create(path):
@@ -26,7 +33,6 @@ def create(path):
                 # Convierto a String✨ de Algo 1
                 line = String(line)
                 lineLength = len(line)
-                print(lineLength)
                 word = String("")
 
                 for i in range(0, lineLength):
@@ -35,16 +41,36 @@ def create(path):
                             '''
                             insert en el trie por palabra
                             '''
-                            print(word)
+                            # print(word)
                         word = String("")
                     else:
                         word = concat(word, String(line[i]))
 
+        '''
+        Empezando a integrar pickle..
+        '''
+
+        test = testObject()
+        test.id = 123
+        test.name = 'test'
+
+        with open('library.bin', 'bw') as lib:
+            pickle.dump(test, lib)
+
 
 def search(text):
-    print("Buscando en biblioteca")
-
-# void
+    # Abro archivo contenedor del bin pickle
+    with open('library.bin', 'rb') as lib:
+        try:
+            trie = pickle.load(lib)
+            '''
+                implementar busqueda en trie devuelto por pickle
+            '''
+        # En caso de que el archivo este vacío (no se ha creado biblioteca)
+        except EOFError:
+            print("ERROR: Todavía no se ha creado una biblioteca")
+            print(
+                "Nota: 'python personal_library.py -create <local-path>' para crear una biblioteca")
 
 
 def main():
@@ -54,19 +80,23 @@ def main():
         print("     'python personal_library.py -create <local-path>' para crear una biblioteca")
         print("     'python personal_library.py -search <valor>' para buscar en una biblioteca")
     else:
-        path = sys.argv[2]
-        # Si el path ingresado existe
-        if(os.path.exists(path)):
-            # Validación del argumento de búsqueda
-            if(sys.argv[1] == '-create'):
-                create(sys.argv[2])
-            elif(sys.argv[2] == '-search'):
-                search(sys.argv[2])
+        paramValue = sys.argv[1]
+        # Validación del argumento de búsqueda
+        if(paramValue == '-create'):
+            path = sys.argv[2]
+            if(os.path.exists(path)):
+                create(path)
             else:
-                # Argumento no es ni -create o -search
-                print("Ingrese un argumento válido ('-create' o '-search')")
+                print("El directorio que ha ingresado es inválido")
+        elif(paramValue == '-search'):
+            searchValue = sys.argv[2]
+
+            search(searchValue)
         else:
-            print("El directorio que ha ingresado es inválido")
+            # Argumento no es ni -create o -search
+            print("Ingrese un argumento válido ('-create' o '-search')")
+
+        # Si el path ingresado existe
 
 
 # Call a la función principal
