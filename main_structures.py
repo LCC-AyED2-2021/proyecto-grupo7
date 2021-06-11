@@ -1,5 +1,5 @@
 from algo1 import *
-from linkedlist import *
+from linkedlist import LinkedList, add
 
 
 class Trie:
@@ -43,7 +43,7 @@ def TInsert(T, element, fileName):
             if listNode == None:
                 trieNode = TrieNode()
                 trieNode.key = element[i]
-                if i == len(element)-1:                    
+                if i == len(element)-1:
                     trieNode.isEndOfWord = True
                     trieNode.files = filesList()
                     trieNode.files.head = filesNode()
@@ -55,17 +55,16 @@ def TInsert(T, element, fileName):
                 current = trieNode
             else:
                 if i == len(element)-1:
-                    listNode.isEndOfWord = True 
+                    listNode.isEndOfWord = True
                     if listNode.files == None:
                         listNode.files = filesList()
-                        listAdd(listNode.files,fileName)                    
+                        listAdd(listNode.files, fileName, 1)
                     else:
                         currentFile = listNode.files.head
                         if currentFile.fileName == fileName:
                             currentFile.wordReps += 1
                         else:
-                            listNode.files = filesList()
-                            listAdd(listNode.files,fileName) 
+                            listAdd(listNode.files, fileName, 1)
                 current = listNode
         else:
             current.children = LinkedList()
@@ -121,24 +120,23 @@ def TSearch(T, element):
                     current = current.value.children.head
 
 
-def listAdd(list,element):
+def listAdd(list, element, reps):
     newFile = filesNode()
     newFile.fileName = element
-    newFile.wordReps = 1
+    newFile.wordReps = reps
     newFile.nextNode = list.head
     list.head = newFile
 
 
-def listPrint(L):
-  ''' La función listPrint() imprime todos los elementos de la lista enlazada. '''
-  current = L.head
-  while current != None:
-    print(current.fileName,end = " ")
-    print(current.wordReps,end = " ")
-    current = current.nextNode
-  print("")
-
-
+def printFilesList(L):
+    ''' La función listPrint() imprime todos los elementos de la lista enlazada. '''
+    current = L.head
+    while current != None:
+        print(current.fileName, end=" ")
+        print(current.wordReps, end=" ")
+        print("")
+        current = current.nextNode
+    print("")
 
 
 # TESTEOS
