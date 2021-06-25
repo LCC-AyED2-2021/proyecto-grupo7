@@ -25,20 +25,14 @@ Función hash(key):
 
 
 def hash(key):
-    if(type(key) == int):
-        return (ord(key)-32) % 255
-    else:
-        hashKey = 0
-        for i in range(0, len(key)):
-            hashKey += (ord(key)-32)
-        return hashKey % 255
+    return (key-32) % 255
 
 
 def insertHash(D, value):
     if(value == None):
         return None
 
-    posHash = hash(value)
+    posHash = hash(ord(value))
 
     D[posHash] = LinkedList()
 
@@ -69,7 +63,7 @@ def searchHashList(D, key):
     if(key == None):
         return None
 
-    posHash = hash(key)
+    posHash = hash(ord(key))
     hashList = D[posHash]
 
     if(hashList == None):
