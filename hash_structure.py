@@ -1,37 +1,95 @@
-from linkedlist import *
+from algo1 import *
 
 
-class nodeHash:
-    key = None
-    value = None
-    nextNode = None
+def createImportantCharHash():
+    hashTable = Array(24, "")
+    insertHash(hashTable, " ")
+    insertHash(hashTable, "\t")
+    insertHash(hashTable, "\n")
+    return hashTable
 
 
-def addHashNode(L, key, value):
-    if(L == None):
-        return None
-    newNode = nodeHash()
-    newNode.key = key
-    newNode.value = value
-    newNode.nextNode = L.head
-    L.head = newNode
-    return
-
-
-'''
-Función hash(key):
-    Recibe una key y retorna el valor hash
-'''
+def createWordsTable():
+    hashTable = Array(247, "")
+    insertHash(hashTable, "A")
+    insertHash(hashTable, "Á")
+    insertHash(hashTable, "a")
+    insertHash(hashTable, "á")
+    insertHash(hashTable, "B")
+    insertHash(hashTable, "b")
+    insertHash(hashTable, "C")
+    insertHash(hashTable, "c")
+    insertHash(hashTable, "D")
+    insertHash(hashTable, "d")
+    insertHash(hashTable, "E")
+    insertHash(hashTable, "É")
+    insertHash(hashTable, "e")
+    insertHash(hashTable, "é")
+    insertHash(hashTable, "F")
+    insertHash(hashTable, "f")
+    insertHash(hashTable, "G")
+    insertHash(hashTable, "g")
+    insertHash(hashTable, "H")
+    insertHash(hashTable, "h")
+    insertHash(hashTable, "I")
+    insertHash(hashTable, "Í")
+    insertHash(hashTable, "i")
+    insertHash(hashTable, "í")
+    insertHash(hashTable, "J")
+    insertHash(hashTable, "j")
+    insertHash(hashTable, "K")
+    insertHash(hashTable, "k")
+    insertHash(hashTable, "L")
+    insertHash(hashTable, "l")
+    insertHash(hashTable, "M")
+    insertHash(hashTable, "m")
+    insertHash(hashTable, "N")
+    insertHash(hashTable, "n")
+    insertHash(hashTable, "Ñ")
+    insertHash(hashTable, "ñ")
+    insertHash(hashTable, "O")
+    insertHash(hashTable, "Ó")
+    insertHash(hashTable, "o")
+    insertHash(hashTable, "ó")
+    insertHash(hashTable, "P")
+    insertHash(hashTable, "p")
+    insertHash(hashTable, "Q")
+    insertHash(hashTable, "q")
+    insertHash(hashTable, "R")
+    insertHash(hashTable, "r")
+    insertHash(hashTable, "S")
+    insertHash(hashTable, "s")
+    insertHash(hashTable, "T")
+    insertHash(hashTable, "t")
+    insertHash(hashTable, "U")
+    insertHash(hashTable, "Ú")
+    insertHash(hashTable, "u")
+    insertHash(hashTable, "ú")
+    insertHash(hashTable, "V")
+    insertHash(hashTable, "v")
+    insertHash(hashTable, "W")
+    insertHash(hashTable, "w")
+    insertHash(hashTable, "X")
+    insertHash(hashTable, "x")
+    insertHash(hashTable, "Y")
+    insertHash(hashTable, "y")
+    insertHash(hashTable, "Z")
+    insertHash(hashTable, "z")
+    insertHash(hashTable, "0")
+    insertHash(hashTable, "1")
+    insertHash(hashTable, "2")
+    insertHash(hashTable, "3")
+    insertHash(hashTable, "4")
+    insertHash(hashTable, "5")
+    insertHash(hashTable, "6")
+    insertHash(hashTable, "7")
+    insertHash(hashTable, "8")
+    insertHash(hashTable, "9")
+    return hashTable
 
 
 def hash(key):
-    if(type(key) == int):
-        return (ord(key)-32) % 255
-    else:
-        hashKey = 0
-        for i in range(0, len(key)):
-            hashKey += (ord(key)-32)
-        return hashKey % 255
+    return ord(key)-9
 
 
 def insertHash(D, value):
@@ -39,54 +97,25 @@ def insertHash(D, value):
         return None
 
     posHash = hash(value)
+    D[posHash] = value
 
-    D[posHash] = LinkedList()
-
-    # Agrega nodo a la lista
-    addHashNode(D[posHash], ord(value)-32, value)
-
-    return D
+    # return D
+    return posHash
 
 
 def searchHash(D, value):
-    hashList = searchHashList(D, value)
-    # Si la lista no tiene nodos
-    if(hashList == None or hashList.head == None):
+    posHash = hash(value)
+    if(posHash > 246 or posHash < 39):
         return None
-    else:
-        # Busco nodo
-        hashNode = searchNodeByKey(hashList, ord(value)-32)
-
-        # Si se encuentra el valor
-        if(hashNode != None):
-            return hashNode.value
-        # Si no existe la key
-        else:
-            return None
+    if(D[posHash] == value):
+        return value
+    return None
 
 
-def searchHashList(D, key):
-    if(key == None):
+def specialSearchHash(D, value):
+    posHash = hash(value)
+    if(posHash < 0 or posHash > 23):
         return None
-
-    posHash = hash(key)
-    hashList = D[posHash]
-
-    if(hashList == None):
-        return None
-    else:
-        return hashList
-
-
-def searchNodeByKey(L, key):
-    if(L.head.key == key):
-        return L.head
-
-    currentNode = L.head.nextNode
-
-    while(currentNode != None):
-        # Si encuentro retorno
-        if(currentNode.key == key):
-            return currentNode
-        currentNode = currentNode.nextNode
+    if(D[posHash] == value):
+        return value
     return None
