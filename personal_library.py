@@ -1,14 +1,25 @@
 # Imports manipulación de archivos
 import sys
 import os
+
 # Import para serialización de datos
 import pickle
+
 # Imports propios
-# from linkedlist import *
 from algo1 import *
 from main_structures import *
 from hash_structure import *
 from insertionsort_structure import InsertionSort
+
+
+# Para que no haya errores con Pickle
+sys.setrecursionlimit(10000)
+
+
+''' 
+Función isTextFile(filename)
+    Verifica si un archivo tiene extensión .txt
+'''
 
 
 def isTextFile(filename):
@@ -31,147 +42,90 @@ def isTextFile(filename):
     return True
 
 
-def createSpecialCharsHash():
-    hashTable = Array(234, LinkedList())
-    insertHash(hashTable, " ")
-    insertHash(hashTable, " ")
-    insertHash(hashTable, '"')
-    insertHash(hashTable, ',')
-    insertHash(hashTable, '.')
-    insertHash(hashTable, '-')
-    insertHash(hashTable, '¡')
-    insertHash(hashTable, '!')
-    insertHash(hashTable, '¿')
-    insertHash(hashTable, '?')
-    insertHash(hashTable, '[')
-    insertHash(hashTable, ']')
-    insertHash(hashTable, '{')
-    insertHash(hashTable, '}')
-    insertHash(hashTable, '(')
-    insertHash(hashTable, ')')
-    insertHash(hashTable, '|')
-    insertHash(hashTable, '¬')
-    insertHash(hashTable, '°')
-    insertHash(hashTable, '#')
-    insertHash(hashTable, '^')
-    insertHash(hashTable, '~')
-    insertHash(hashTable, '/')
-    insertHash(hashTable, ':')
-    insertHash(hashTable, ';')
-    insertHash(hashTable, '@')
-    insertHash(hashTable, '*')
-    insertHash(hashTable, '+')
-    insertHash(hashTable, '_')
-    insertHash(hashTable, '<')
-    insertHash(hashTable, '>')
-    insertHash(hashTable, '=')
-    insertHash(hashTable, '`')
-    insertHash(hashTable, '´')
-    insertHash(hashTable, '×')
-    insertHash(hashTable, 'ƒ')
-    insertHash(hashTable, 'ª')
-    insertHash(hashTable, 'º')
-    insertHash(hashTable, '®')
-    insertHash(hashTable, '¢')
-    insertHash(hashTable, '©')
-    insertHash(hashTable, '╣')
-    insertHash(hashTable, '║')
-    insertHash(hashTable, '╗')
-    insertHash(hashTable, '╝')
-    insertHash(hashTable, '┤')
-    insertHash(hashTable, '│')
-    insertHash(hashTable, '▓')
-    insertHash(hashTable, '▒')
-    insertHash(hashTable, '░')
-    insertHash(hashTable, '»')
-    insertHash(hashTable, '«')
-    insertHash(hashTable, '¼')
-    insertHash(hashTable, '½')
-    insertHash(hashTable, '¾')
-    insertHash(hashTable, '└')
-    insertHash(hashTable, '┴')
-    insertHash(hashTable, '┬')
-    insertHash(hashTable, '├')
-    insertHash(hashTable, '─')
-    insertHash(hashTable, '┼')
-    insertHash(hashTable, '╚')
-    insertHash(hashTable, '╔')
-    insertHash(hashTable, '╩')
-    insertHash(hashTable, '╦')
-    insertHash(hashTable, '╠')
-    insertHash(hashTable, '═')
-    insertHash(hashTable, '╬')
-    insertHash(hashTable, '¤')
-    insertHash(hashTable, 'ı')
-    insertHash(hashTable, '┘')
-    insertHash(hashTable, '┌')
-    insertHash(hashTable, '█')
-    insertHash(hashTable, '¯')
-    insertHash(hashTable, '▄')
-    insertHash(hashTable, '▀')
-    insertHash(hashTable, '±')
-    insertHash(hashTable, '≡')
-    insertHash(hashTable, '¦')
-    insertHash(hashTable, '§')
-    insertHash(hashTable, '¶')
-    insertHash(hashTable, '¸')
-    insertHash(hashTable, 'Ì')
-    insertHash(hashTable, '¨')
-    insertHash(hashTable, '°')
-    insertHash(hashTable, '·')
-    insertHash(hashTable, '¹')
-    insertHash(hashTable, '²')
-    insertHash(hashTable, '³')
-    insertHash(hashTable, '■')
-
-    return hashTable
+'''
+Función create
+    Lógica central del programa, recorre archivos, extrae las palabras y las serializa
+'''
 
 
 def create(path):
     # Arreglo con los archivos del directorio
     libraryFiles = os.listdir(path)
     amountFiles = len(libraryFiles)
+
     # Si no hay archivos en la biblioteca
     if(amountFiles == 0):
         print("No hay archivos en la biblioteca")
         return
     print("Creando la biblioteca..")
+
     # Creo Trie
     wordsTree = Trie()
-    specialCharHash = createSpecialCharsHash()
+
+    # Tabla hash de caracteres normales
+    wordsTable = createWordsTable()
+    # Tabla hash de caracteres especiales
+    importantCharHash = createImportantCharHash()
+
     # Recorro los archivos del directorio
     for file in libraryFiles:
         # Solo leo archivo si es TXT
         if(isTextFile(file)):
+
             with open(path + "\\" + file, 'r', encoding='utf-8') as currentFile:
+
                 fileLines = currentFile.readlines()
 
-                line = String(fileLines[0])
-                lineLength = len(line)
-                word = String("")
-
+                # Por cada linea del archivo..
                 for line in fileLines:
                     # Convierto a String✨ de Algo 1
                     line = String(line)
                     lineLength = len(line)
                     word = String("")
 
+                    # Por cada caracter de la línea..
                     for i in range(0, lineLength):
 
-                        if(searchHash(specialCharHash, line[i]) != None):
-                            if(len(word) != 0):
-                                # Insert de palabra en el árbol
-                                TInsert(wordsTree, word, file)
-                            word = String("")
-                        else:
+                        # Si el caracter NO es un símbolo especial
+                        if(searchHash(wordsTable, line[i])):
+
+                            # Concateno en la palabra
                             word = concat(word, String(line[i]))
-                            # if(i == lineLength-1 and searchHash(specialCharHash, line[i]) == None):
-                            if(i == lineLength-1 and searchHash(specialCharHash, line[i]) == None):
+
+                            # Si es el final de la línea..
+                            if(i == lineLength-1):
+                                # Inserto la palabra en el Trie
                                 TInsert(wordsTree, word, file)
+                                word = String("")
+
+                        # Si el caracter en cambio ES un símbolo especial
+                        else:
+                            # Si todavía la palabra no tiene caracteres, ignoro el símbolo
+                            if(len(word) >= 1):
+                                # Si es un caracter especial y estamos al final de la linea
+                                if(i == lineLength-1 or i+1 == lineLength-1):
+                                    # Inserto la palabra en el Trie
+                                    TInsert(wordsTree, word, file)
+                                    word = String("")
+                                else:
+                                    # Si los caracteres que siguen (2 posiciones más adelante) o el actual, es un salto de linea, espacio o tab
+                                    if(specialSearchHash(importantCharHash, line[i]) != None or specialSearchHash(importantCharHash, line[i+1]) != None or specialSearchHash(importantCharHash, line[i+2]) != None):
+                                        # Inserto la palabra en el Trie e ignoro
+                                        TInsert(wordsTree, word, file)
+                                        word = String("")
+                                    else:
+                                        # Si no, concateno a la palabra
+                                        word = concat(word, String(line[i]))
     # Guardo trie en pickle
     with open('library.bin', 'bw') as lib:
         pickle.dump(wordsTree, lib)
         print("library created successfully")
+
+
+'''
+Función search
+    Busca un valor en el Trie serializado, y retorna una lista con prioridad descendente de la palabra buscada
+'''
 
 
 def search(text):
@@ -181,18 +135,18 @@ def search(text):
             # Cargo el Trie en pickle
             trie = pickle.load(lib)
 
+            # Busco la palabra en el Trie
             filesList = TSearch(trie, text)
 
+            # Si no existe la palabra en el trie
             if(filesList == False):
                 print("no document found")
             else:
-                '''
-                Falta insertion sort
-                '''
-                finalWordsResult = TSearch(trie, text)
-                InsertionSort(finalWordsResult)
+                # Ordeno la lista con insertion sort
+                InsertionSort(filesList)
+                # Imprimo la lista
+                printFilesList(filesList)
 
-                printFilesList(finalWordsResult)
         # En caso de que el archivo este vacío (no se ha creado biblioteca)
         except EOFError:
             print("ERROR: Todavía no se ha creado una biblioteca")
@@ -200,8 +154,16 @@ def search(text):
                 "Nota: 'python personal_library.py -create <local-path>' para crear una biblioteca")
 
 
+'''
+Función main
+    Donde inicia el programa, verifica que los inputs por consola sean correctos y llama a las debidas funciones
+'''
+
+
 def main():
     inputValues = sys.argv
+
+    # Si hay mas de 3 inputs, está mal ingresado
     if(len(inputValues) != 3):
         print("Código invalido")
         print("Intenta con:")
@@ -209,10 +171,14 @@ def main():
         print("     'python personal_library.py -search <valor>' para buscar en una biblioteca")
     else:
         paramValue = inputValues[1]
-        # Validación del argumento de búsqueda
+        # Validación de los argumentos de búsqueda
         if(paramValue == '-create'):
+            # Segundo argumento es el path
             path = inputValues[2]
+
+            #  Si existe el path
             if(os.path.exists(path)):
+                # Llamo a la función create, con el path
                 create(path)
             else:
                 print("El directorio que ha ingresado es inválido o no existe")
@@ -222,13 +188,12 @@ def main():
                 print(
                     "   Directorio relativo (si está en la misma carpeta del programa), por ejemplo: directorio")
         elif(paramValue == '-search'):
+            # Segundo argumento es la búsqueda
             searchValue = inputValues[2]
+            # Llamo a la función search, con la búsqueda
             search(searchValue)
         else:
-            # Argumento no es ni -create o -search
             print("Ingrese un argumento válido ('-create' o '-search')")
-
-        # Si el path ingresado existe
 
 
 # Call a la función principal

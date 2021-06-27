@@ -1505,7 +1505,3 @@ TESTEANDO MUCHAS COSAS123
 distillation for task-agnostic compression of pre-trained transformers. Retrieved from https://arXiv:2002.10957.
 Received April 2020; revised October 2020; accepted November 2020
 ACM Computing Surveys, Vol. 54, No. 3, Article 62. Publication date: April 2021.
-"Inspiration
-TESTEANDO MUCHAS COSAS
-TESTEANDO MUCHAS COSAS2
-TESTEANDO MUCHAS COSAS3
