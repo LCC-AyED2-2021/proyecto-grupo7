@@ -180,35 +180,35 @@ def create(path):
                     word = String("")
 
                     for i in range(0, lineLength):
+                    #     if(searchHash(specialCharHash, line[i]) != None):
+                    #         if(len(word) != 0):
+                    #             # Insert de palabra en el árbol
+                    #             TInsert(wordsTree, word, file)
+                    #         word = String("")
+                    #     else:
+                    #         word = concat(word, String(line[i]))
+                    #         # if(i == lineLength-1 and searchHash(specialCharHash, line[i]) == None):
+                    #         if(i == lineLength-1):
+                    #             TInsert(wordsTree, word, file)
                         if(searchHash(specialCharHash, line[i]) != None):
-                            if(len(word) != 0):
-                                # Insert de palabra en el árbol
-                                TInsert(wordsTree, word, file)
-                            word = String("")
+                            if(len(word) > 0):
+                                if(i == lineLength-1):
+                                    TInsert(wordsTree, word, file)
+                                    word = String("")
+                                else:
+                                    if(searchHash(importantCharHash, line[i]) != None):
+                                        TInsert(wordsTree, word, file)
+                                        word = String("")
+                                    elif(searchHash(importantCharHash, line[i+1]) != None):
+                                        TInsert(wordsTree, word, file)
+                                        word = String("")
+                                    else:
+                                        word = concat(word, String(line[i]))
                         else:
                             word = concat(word, String(line[i]))
-                            # if(i == lineLength-1 and searchHash(specialCharHash, line[i]) == None):
                             if(i == lineLength-1):
                                 TInsert(wordsTree, word, file)
-                        # if(searchHash(specialCharHash, line[i]) != None):
-                        #     if(len(word) > 0):
-                        #         if(i == lineLength-1):
-                        #             TInsert(wordsTree, word, file)
-                        #             word = String("")
-                        #         else:
-                        #             if(searchHash(importantCharHash, line[i]) != None):
-                        #                 TInsert(wordsTree, word, file)
-                        #                 word = String("")
-                        #             elif(searchHash(importantCharHash, line[i+1]) != None):
-                        #                 TInsert(wordsTree, word, file)
-                        #                 word = String("")
-                        #             else:
-                        #                 word = concat(word, String(line[i]))
-                        # else:
-                        #     word = concat(word, String(line[i]))
-                        #     if(i == lineLength-1):
-                        #         TInsert(wordsTree, word, file)
-                        #         word = String("")
+                                word = String("")
             # t1 = time.time()
             # total += (t1-t0)
             # print(t1-t0, 's')
