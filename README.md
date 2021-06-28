@@ -5,6 +5,11 @@
 ### **Proyecto final de la materia 'Algoritmo y Estructuras de Datos 2' de la Universidad Nacional de Cuyo.**
 El proyecto consiste la utilización de diversas estructuras de datos vistas durante el cursado, con el fin de crear un programa eficiente de busqueda de palabras en una biblioteca de archivos
 
+# Importante
+
+Se realizó una **página web** utilizando el framework *Docusaurus 2* para crear una documentación un poco más detallada (incluyendo un test de performance con cProfile)
+## Link: [https://algo2-project-website.vercel.app/](https://algo2-project-website.vercel.app/)
+
 # Estructuras de datos utilizadas
 
 A continuación, se lista las estructuras utilizadas para el proyecto y se explica de qué forma se utilizan
