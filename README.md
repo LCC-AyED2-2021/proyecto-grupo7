@@ -7,6 +7,8 @@ El proyecto consiste la utilización de diversas estructuras de datos vistas dur
 
 # Estructuras de datos utilizadas
 
+A continuación, se lista las estructuras utilizadas para el proyecto y se explica de qué forma se utilizan
+
 ## **Trie** (Estructura Principal)
 
 Como estructura principal para el almacenamiento de datos de la biblioteca virtual, se eligió la estructura Trie (o árbol n-ario).
