@@ -60,7 +60,7 @@ Se utilizó la estructura de Hash Table
 
 ## **Create**
 
-<img src="https://i.imgur.com/cU9fi3p.gif" style="width: 30%"/>
+<img src="https://i.imgur.com/cU9fi3p.gif" style="width: 350px"/>
 
 > Ejemplo de inserción de palabras en el Trie
 
