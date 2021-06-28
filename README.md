@@ -1,5 +1,5 @@
-![alt text](https://i.imgur.com/OL2NjvZ.jpg, "Project logo")
-![alt-text](https://img.shields.io/badge/-Python-f2ef3a?logo=python&logoColor=blue&style=for-the-badge, "Python badge") ![alt text](https://img.shields.io/badge/INTEGRANTES-GABRIEL%20CARRILLO%20y%20GABRIEL%20P%C3%89REZ%20DIEZ-blue?style=for-the-badge, "Project participants") 
+![Project Logo](https://i.imgur.com/OL2NjvZ.jpg)
+![Python Lang Badge](https://img.shields.io/badge/-Python-f2ef3a?logo=python&logoColor=blue&style=for-the-badge) ![Project Participants](https://img.shields.io/badge/INTEGRANTES-GABRIEL%20CARRILLO%20y%20GABRIEL%20P%C3%89REZ%20DIEZ-blue?style=for-the-badge) 
 
 
 ### **Proyecto final de la materia 'Algoritmo y Estructuras de Datos 2' de la Universidad Nacional de Cuyo.**
