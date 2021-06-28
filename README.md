@@ -113,6 +113,13 @@ python personal_library.py -create 'path'
 
 _Ejemplo de inserción de palabras en el Trie_
 
+
+### **Complejidad temporal:**
+La función tiene una complejidad promedio de `Θ(t*n*m)` siendo:
+- `t`: cantidad de archivos
+- `n`: cantidad de líneas en un archivo
+- `m`: cantidad de caracteres por línea
+
 &nbsp;
 
 ## **Search**
@@ -124,6 +131,11 @@ Uso:
 python personal_library.py -search 'word'
 ```
 
+### **Complejidad temporal:**
+La función tiene una complejidad en el peor caso de `O(m |Σ| + n)` siendo:
+- `m`: tamaño de la palabra
+- `|Σ|`: tamaño del diccionario
+- `n`: cantidad de archivos en
 
 # Otros métodos y modulos utilizados
 
