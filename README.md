@@ -46,14 +46,14 @@ En el campo files agregado, se guardará una versión modificada de Linked List 
 
 | Caso | Complejidad | 
 | ---- | :---------: |
-| Peor | `O(m |Σ|)` | 
+| Peor | `O(m \|Σ\|)` | 
 | Promedio | `Θ(m)` |
 
 #### Búsqueda:
 
 | Caso | Complejidad |
 | ---- | :---------: |
-| Peor | `O(m |Σ|)` |
+| Peor | `O(m \|Σ\|)` |
 | Promedio | `Θ(m)` |
 
 
