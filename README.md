@@ -1,11 +1,9 @@
 ![logo](https://i.imgur.com/OL2NjvZ.jpg)
 ![integrantes](https://img.shields.io/badge/INTEGRANTES-GABRIEL%20P%C3%89REZ%20DIEZ%20%20y%20GABRIEL%20CARRILLO-blue?style=for-the-badge) ![lenguaje](https://img.shields.io/badge/-Python-f2ef3a?logo=python&logoColor=blue&style=for-the-badge)
 
-// Tests de perfomance
 
-// agregar nombres
-
-El proyecto consiste en la generación de términos de una biblioteca virtual para búsquedas de documentos relevantes. // seguir agregando cosas
+Proyecto final de la materia 'Algoritmo y Estructuras de Datos 2' de la Universidad Nacional de Cuyo.
+El proyecto consiste la utilización de diversas estructuras de datos vistas durante el cursado, con el fin de crear un programa eficiente de busqueda de palabras en una biblioteca de archivos
 
 # Estructuras de datos utilizadas
 
@@ -52,6 +50,10 @@ class filesNode:
 ```
 
 Esta estructura, utilizada en el campo files de la clase TrieNode, contiene la cantidad de repeticiones de cada palabra por archivo.
+
+<img src="https://i.imgur.com/cU9fi3p.gif" style="margin: 0 auto; width: 50%"/>
+
+> Ejemplo de inserción de palabras en el Trie
 
 ## **Hash Tables**
 
