@@ -51,10 +51,6 @@ class filesNode:
 
 Esta estructura, utilizada en el campo files de la clase TrieNode, contiene la cantidad de repeticiones de cada palabra por archivo.
 
-<img src="https://i.imgur.com/cU9fi3p.gif" style="margin: 0 auto; width: 50%"/>
-
-> Ejemplo de inserción de palabras en el Trie
-
 ## **Hash Tables**
 
 Se utilizó la estructura de Hash Table
@@ -63,6 +59,10 @@ Se utilizó la estructura de Hash Table
 
 
 ## **Create**
+
+<img src="https://i.imgur.com/cU9fi3p.gif" style="width: 30%"/>
+
+> Ejemplo de inserción de palabras en el Trie
 
 ## **Search**
 
