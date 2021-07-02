@@ -16,7 +16,7 @@ from insertionsort_structure import InsertionSort
 sys.setrecursionlimit(10000)
 
 
-''' 
+'''
 Función isTextFile(filename)
     Verifica si un archivo tiene extensión .txt
 '''
@@ -71,8 +71,7 @@ def create(path):
     for file in libraryFiles:
         # Solo leo archivo si es TXT
         if(isTextFile(file)):
-
-            with open(path + "\\" + file, 'r', encoding='utf-8') as currentFile:
+            with open(path + "/" + file, 'r', encoding='utf-8') as currentFile:
 
                 fileLines = currentFile.readlines()
 
@@ -128,7 +127,7 @@ Función search
 '''
 
 
-def search(text):
+def search(word):
     # Abro archivo contenedor del bin pickle
     with open('library.bin', 'rb') as lib:
         try:
@@ -136,7 +135,7 @@ def search(text):
             trie = pickle.load(lib)
 
             # Busco la palabra en el Trie
-            filesList = TSearch(trie, text)
+            filesList = TSearch(trie, word)
 
             # Si no existe la palabra en el trie
             if(filesList == False):
@@ -170,9 +169,9 @@ def main():
         print("     'python personal_library.py -create <local-path>' para crear una biblioteca")
         print("     'python personal_library.py -search <valor>' para buscar en una biblioteca")
     else:
-        paramValue = inputValues[1]
+        paramValue = String(inputValues[1])
         # Validación de los argumentos de búsqueda
-        if(paramValue == '-create'):
+        if(strcmp((paramValue), String('-create'))):
             # Segundo argumento es el path
             path = inputValues[2]
 
@@ -187,7 +186,7 @@ def main():
                     "   Directorio absoluto, por ejemplo: C:/directorio/a/la/carpeta")
                 print(
                     "   Directorio relativo (si está en la misma carpeta del programa), por ejemplo: directorio")
-        elif(paramValue == '-search'):
+        elif(strcmp((paramValue), String('-search'))):
             # Segundo argumento es la búsqueda
             searchValue = inputValues[2]
             # Llamo a la función search, con la búsqueda
